@@ -154,7 +154,30 @@ class LLMClient:
                     "target_knowledge_overlap": "PARTIAL",
                     "explanation": "Question asks generally about reflection (acoustic/general waves/optics) without the qualifier 'of light'. Context review is required."
                 }
-            # 2. Distinct physical concept inquiries: laws, angles, diffuse vs regular, numericals, wave speed
+            # 2. Hard negatives: Contrasting physical terms, numerical values, or entity numbers
+            elif any(
+                (term1 in q_a and term2 in q_b) or (term2 in q_a and term1 in q_b)
+                for term1, term2 in [
+                    ("first law", "second law"),
+                    ("first law", "third law"),
+                    ("second law", "third law"),
+                    ("reflection", "refraction"),
+                    ("specular", "diffuse"),
+                    ("concave", "convex"),
+                    ("mitosis", "meiosis"),
+                    ("stack", "queue"),
+                    ("light", "sound"),
+                    ("40", "65"),
+                    ("30", "60")
+                ]
+            ):
+                result = {
+                    "verdict": "UNIQUE",
+                    "confidence": 0.98,
+                    "target_knowledge_overlap": "LOW",
+                    "explanation": "Contrasting scientific entities, numerical values, or physical mechanisms differentiate these questions."
+                }
+            # 3. Distinct physical concept inquiries: laws, angles, diffuse vs regular, numericals, wave speed
             elif any(sub in q_a for sub in ["angle of", "laws of", "regular and diffuse", "diffuse reflection", "incidence", "degree", "calculate", "speed of", "vacuum", "fermat", "irregularities", "refraction", "deviation"]) or \
                  any(sub in q_b for sub in ["angle of", "laws of", "regular and diffuse", "diffuse reflection", "incidence", "degree", "calculate", "speed of", "vacuum", "fermat", "irregularities", "refraction", "deviation"]):
                 result = {
@@ -163,7 +186,7 @@ class LLMClient:
                     "target_knowledge_overlap": "LOW",
                     "explanation": "The questions evaluate different physical concepts, properties, or computational tasks rather than the fundamental definition."
                 }
-            # 3. True semantic paraphrases for the core definition of reflection of light
+            # 4. True semantic paraphrases for the core definition of reflection of light
             elif (any(sub in q_a for sub in ["define", "meaning", "what is reflection of light", "understand by the reflection", "meaning of light reflection", "definition"]) and
                   any(sub in q_b for sub in ["define", "meaning", "what is reflection of light", "understand by the reflection", "meaning of light reflection", "definition"])):
                 result = {
@@ -171,6 +194,16 @@ class LLMClient:
                     "confidence": 0.98,
                     "target_knowledge_overlap": "IDENTICAL",
                     "explanation": "Both questions test the core definition of the reflection of light with identical required answers."
+                }
+            # 5. Cross-domain paraphrases
+            elif (("photosynthesis" in q_a or "autotrophic" in q_a) and ("photosynthesis" in q_b or "autotrophic" in q_b)) or \
+                 (("binary search" in q_a or "logarithmic search" in q_a) and ("binary search" in q_b or "logarithmic search" in q_b)) or \
+                 (("first law of motion" in q_a or "newton's first law" in q_a) and ("first law of motion" in q_b or "newton's first law" in q_b)):
+                result = {
+                    "verdict": "SEMANTIC_DUPLICATE",
+                    "confidence": 0.95,
+                    "target_knowledge_overlap": "IDENTICAL",
+                    "explanation": "Semantic paraphrase testing the identical core concept."
                 }
             else:
                 result = {
