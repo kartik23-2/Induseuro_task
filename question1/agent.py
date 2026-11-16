@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import re
-import uuid
 from dataclasses import dataclass
 
 from shared.billing import CostSession
@@ -62,7 +61,6 @@ class SupportCopilot:
 
         system = "\n\n".join(
             [
-                f"Run id {uuid.uuid4()}",
                 "You are ShopAssist, the Tier-1 customer support copilot.",
                 _FEW_SHOT,
                 "HELP CENTER:",
