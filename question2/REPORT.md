@@ -70,3 +70,4 @@ Automated test suite (`pytest tests/test_question2.py -v`) executed and passed:
 
 ## 7. Limitations
 - Evaluated on the local simulator `LlmClient`. In live production systems with commercial LLMs, vector database retrieval (e.g., embeddings with cosine similarity) and LLM-as-a-judge audits would be tested under actual API latency and semantic variance.
+
