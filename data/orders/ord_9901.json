@@ -1,0 +1,12 @@
+{
+  "order_id": "ord_9901",
+  "sku": "PRO-ANNUAL",
+  "title": "Pro annual subscription",
+  "product_type": "subscription",
+  "delivered_days_ago": 0,
+  "subscription_age_days": 38,
+  "opened": false,
+  "license_revealed": false,
+  "customized": false,
+  "damage_reported": false
+}

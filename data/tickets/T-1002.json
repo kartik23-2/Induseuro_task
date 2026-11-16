@@ -1,0 +1,9 @@
+{
+  "ticket_id": "T-1002",
+  "channel": "chat",
+  "customer_id": "cus_19bb",
+  "order_id": "ord_8890",
+  "messages": [
+    {"from": "customer", "text": "I bought the ebook bundle 5 days ago. You already showed me the license key on the download page. Can I get a refund anyway?"}
+  ]
+}

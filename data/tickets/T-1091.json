@@ -1,0 +1,9 @@
+{
+  "ticket_id": "T-1091",
+  "channel": "email",
+  "customer_id": "cus_hold",
+  "order_id": "ord_9901",
+  "messages": [
+    {"from": "customer", "text": "I cancelled my annual Pro plan on day 38. Please refund the unused months."}
+  ]
+}

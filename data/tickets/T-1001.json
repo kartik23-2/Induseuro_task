@@ -1,0 +1,10 @@
+{
+  "ticket_id": "T-1001",
+  "channel": "email",
+  "customer_id": "cus_8f2a",
+  "order_id": "ord_4421",
+  "messages": [
+    {"from": "customer", "text": "Hi, I'd like a refund for the wireless headphones. They arrived 10 days ago and I never opened the box."},
+    {"from": "agent", "text": "Thanks for reaching out — checking your order now."}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "ticket_id": "T-1004",
+  "channel": "chat",
+  "customer_id": "cus_aa03",
+  "order_id": "ord_5560",
+  "messages": [
+    {"from": "customer", "text": "Warehouse mug (not custom) showed up cracked. Delivered 2 days ago. Replacement?"}
+  ]
+}

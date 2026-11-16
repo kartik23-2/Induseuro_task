@@ -1,0 +1,9 @@
+{
+  "ticket_id": "T-1003",
+  "channel": "email",
+  "customer_id": "cus_77c1",
+  "order_id": "ord_1208",
+  "messages": [
+    {"from": "customer", "text": "The personalized mug I ordered arrived cracked on day 2. Please send a replacement."}
+  ]
+}
