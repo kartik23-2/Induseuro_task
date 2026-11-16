@@ -54,3 +54,4 @@ Average cost per public ticket dropped from **8,926.5 points** to **2,035.5 poin
 - Measurements reflect the local `LlmClient` simulation environment.
 - On a live production LLM API, few-shot examples and system formatting instructions may require prompt tuning or structured output mode (`response_format={"type": "json_object"}`) to guarantee strict JSON schemas without few-shot examples.
 - Provider-level caching discounts require static prefixes exceeding minimum prompt thresholds (e.g., 1,024 tokens for Anthropic/OpenAI caching).
+
