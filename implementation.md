@@ -245,22 +245,17 @@ baseline run.
 
 Fill this table with the actual output from your environment.
 
-  ----------------------------------------------------------------------------
-  Ticket      Expected     Actual      Expected     Actual            Baseline
-              action       action      article      article             points
-  ----------- ------------ ----------- ------------ ----------- --------------
-  `T-1001`    Verify from  Record run  Verify from  Record run      Record run
-              tests/data               tests/data               
+  ----------------------------------------------------------------------------------------------------------------------
+  Ticket      Expected Action   Actual Action   Expected Article              Actual Article                Baseline Points
+  ----------- ----------------- --------------- ----------------------------- ----------------------------- -----------------
+  `T-1001`    `REFUND`          `REFUND`        `returns-within-30-days`      `returns-within-30-days`      8,856
 
-  `T-1002`    Verify from  Record run  Verify from  Record run      Record run
-              tests/data               tests/data               
+  `T-1002`    `SEND_ARTICLE`    `SEND_ARTICLE`  `digital-license-no-refund`   `digital-license-no-refund`   8,781
 
-  `T-1003`    Verify from  Record run  Verify from  Record run      Record run
-              tests/data               tests/data               
+  `T-1003`    `ESCALATE_TIER2`  `ESCALATE_TIER2` `custom-items-no-replace`    `custom-items-no-replace`     8,769
 
-  `T-1004`    Verify from  Record run  Verify from  Record run      Record run
-              tests/data               tests/data               
-  ----------------------------------------------------------------------------
+  `T-1004`    `REPLACE`         `REPLACE`       `damage-replacement-7-days`   `damage-replacement-7-days`   8,907
+  ----------------------------------------------------------------------------------------------------------------------
 
 Do not infer expected actions or article IDs from ticket IDs. Read the
 fixture data, tests, or reference output.
@@ -479,31 +474,29 @@ Inspect the test files rather than assuming a test path.
 The assignment asks for a token/points breakdown for one ticket. Use the
 exact numbers from your `CostSession` record.
 
-  -----------------------------------------------------------------------
+  -------------------------------------------------------------------------------------------------
   Metric                               Baseline                 Optimized
   ------------------- ------------------------- -------------------------
-  Ticket ID                             Fill in               Same ticket
+  Ticket ID                              T-1001                    T-1001
 
-  Input tokens                         Measured                  Measured
+  Input tokens                              527                       489
 
-  Cached input tokens   Measured, or `0` if the                  Measured
-                         implementation reports 
-                                           zero 
+  Cached input tokens                         0                         0
 
-  Output tokens                        Measured                  Measured
+  Output tokens                             485                        46
 
-  Input points            Calculate from actual                 Calculate
-                                 billing fields 
+  Input points                         1,581 pts                 1,467 pts
+                               (527 × 3.0 pts/token)     (489 × 3.0 pts/token)
 
-  Output points           Calculate from actual                 Calculate
-                                 billing fields 
+  Output points                        7,275 pts                   690 pts
+                               (485 × 15.0 pts/token)     (46 × 15.0 pts/token)
 
-  Total points              Measured/calculated       Measured/calculated
+  Total points                         8,856 pts                 2,157 pts
 
-  Correct action?                        Yes/No                    Yes/No
+  Correct action?                 Yes (`REFUND`)            Yes (`REFUND`)
 
-  Correct article?                       Yes/No                    Yes/No
-  -----------------------------------------------------------------------
+  Correct article?     Yes (`returns-within-30-days`) Yes (`returns-within-30-days`)
+  -------------------------------------------------------------------------------------------------
 
 Use the repository's own `CostSession` output as the authority for
 points. If you calculate the subtotals manually, document the formula
