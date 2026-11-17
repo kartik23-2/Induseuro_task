@@ -54,6 +54,13 @@ class SupportPipeline:
         messages = [
             ChatMessage(
                 "system",
+                # Baseline verbose prompt with filler context (commented out):
+                # "\n".join([
+                #     f"trace-{uuid.uuid4()}",
+                #     "Triage node: restate the ticket step by step and list candidate kb articles.",
+                #     f"ARTICLE TITLES:\n{title_index(500)}",
+                #     self.help_center[:120_000],
+                # ]),
                 "Triage: classify issue.",
             ),
             ChatMessage(
@@ -89,10 +96,14 @@ class SupportPipeline:
         messages = [
             ChatMessage(
                 "system",
+                # Baseline verbose prompt (commented out):
+                # "Compose node: full reasoning, then JSON with action, kb_article, customer_reply.",
                 "Compose: output JSON with action, kb_article, customer_reply.",
             ),
             ChatMessage(
                 "user",
+                # Baseline redundant user context (commented out):
+                # f"TICKET {ticket_id}\n\nTHREAD:\n{thread}\n\nORDER_SNAPSHOT:\n{snapshot}\nEND_SNAPSHOT\n\nTRIAGE:\n{triage}\n\nARTICLES:\n{retrieved}\n\nTRIAGE AGAIN:\n{triage}",
                 f"ORDER_SNAPSHOT:\n{snapshot}\nEND_SNAPSHOT\nPOLICY:\n{retrieved}",
             ),
         ]
@@ -109,10 +120,14 @@ class SupportPipeline:
         messages = [
             ChatMessage(
                 "system",
+                # Baseline verbose prompt (commented out):
+                # "Audit node: double-check policy, restate ticket, rewrite JSON output.",
                 "Audit: verify policy compliance and output JSON with action, kb_article, customer_reply.",
             ),
             ChatMessage(
                 "user",
+                # Baseline redundant user context with filler KB (commented out):
+                # f"{self.help_center[:80_000]}\n\nTICKET {ticket_id}\n\nTHREAD:\n{thread}\n\nORDER_SNAPSHOT:\n{snapshot}\nEND_SNAPSHOT\n\nDRAFT:\n{draft}\n\nTRIAGE:\n{triage}\n\nARTICLES:\n{retrieved}",
                 f"ORDER_SNAPSHOT:\n{snapshot}\nEND_SNAPSHOT\nDRAFT:\n{draft}",
             ),
         ]

@@ -61,10 +61,17 @@ class SupportCopilot:
 
         system = "\n\n".join(
             [
+                # Baseline dynamic prefix (commented out):
+                # f"Run id {uuid.uuid4()}",
                 "You are ShopAssist, the Tier-1 customer support copilot.",
                 _FEW_SHOT,
                 "HELP CENTER:",
                 all_articles_blob(),
+                # Baseline verbose reasoning instructions (commented out):
+                # (
+                #     "Instructions: Think step by step. Write full reasoning, quote any article "
+                #     "you rely on, then output JSON with action, kb_article, customer_reply."
+                # ),
                 (
                     "Choose the correct action and help-center article. "
                     "Output JSON with action, kb_article, customer_reply."
